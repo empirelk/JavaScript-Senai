@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="ddot.jpg">
+    <link rel="stylesheet" href="css/estilo.css">
+    <title>Turma</title>
+    <meta name="description" content="...">
+    <meta name="keywords" content="sites, web, frontend">
+    <meta name="author" content="Gustavo Agostinho, gustahsantos2008@gmail.com">
+</head>
+<body>
+    <h1> desafio 02</h1>
+    <hr>
+    <div id="resultado"></div>
+        <script>
+            let num1 = parseInt(window.prompt("Digite o primeiro número:"));
+
+            let num2 = parseInt(window.prompt("Digite o segundo número:"));
+
+            let operacao = window.prompt("Digite a operação desejada:\n+ para SOMA\n- para SUBTRAÇÃO");
+
+            let resultado;
+
+            if (operacao === "+") {
+                resultado = num1 + num2;
+            } else if (operacao === "-") {
+                resultado = num1 - num2;
+            } else {
+                resultado = "Operação inválida!";
+            }
+
+            document.getElementById("resultado").textContent = "Resultado: " + resultado;
+        </script>
+</body>
+</html>
