@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="ddot.jpg">
+    <title>DESAFIO 01</title>
+    <meta name="description" content="...">
+    <meta name="keywords" content="sites, web, frontend">
+    <meta name="author" content="Gustavo Agostinho, gustahsantos2008@gmail.com">
+    <style>
+        #ball-container {
+            width: 320px;
+            height: 220px;
+            border: 2px solid #333;
+            border-radius: 12px;
+            position: relative;
+            margin: 20px auto;
+            background-color: #f7f7f7;
+        }
+        #ball {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ff4d4d;
+            position: absolute;
+            top: 85px;
+            left: 135px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        #ball-instructions {
+            text-align: center;
+            margin: 0 auto 10px;
+            max-width: 420px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>DESAFIO 01</h1>
+    <hr>
+    <div>
+        <p>ESTAMOS APRENDENDO JAVASCRIPT</p>
+        <hr>
+        <p>aprender é muito legal</p>
+        <p>e para ajudar no aprendizado, é preciso praticar e exercitar</p>
+    </div>
+    <div id="ball-instructions">
+        Use as setas do teclado para mover a bola dentro da área abaixo. Clique na bola para trocar a cor.
+    </div>
+    <div id="ball-container">
+        <div id="ball"></div>
+    </div>
+    <script>
+        const tags_p = document.getElementsByTagName("p");
+        console.log(tags_p);
+        let tag_p_1 = tags_p[0];
+
+        tag_p_1.style.backgroundColor = "blue";
+        tag_p_1.style.color = "white";
+        
+        let tag_p_2 = tags_p[1];
+        tag_p_2.style.fontSize = "15px";
+        tag_p_2.style.textAlign = "center";
+        tag_p_2.style.backgroundColor = "pink";
+        
+        let tag_p_3 = tags_p[2];
+        tag_p_3.style.textAlign = "center";
+        tag_p_3.style.backgroundColor = "yellow";
+
+
+
+        tag_p_3.innerText = "ESTAMOS APRENDENDO JAVASCRIPT DE FORMA DIVERTIDA";
+
+        const ball = document.getElementById("ball");
+        const container = document.getElementById("ball-container");
+        let position = { top: 85, left: 135 };
+        const step = 15;
+
+        function updateBallPosition() {
+            const maxTop = container.clientHeight - ball.clientHeight;
+            const maxLeft = container.clientWidth - ball.clientWidth;
+            position.top = Math.max(0, Math.min(maxTop, position.top));
+            position.left = Math.max(0, Math.min(maxLeft, position.left));
+            ball.style.top = `${position.top}px`;
+            ball.style.left = `${position.left}px`;
+        }
+
+        function moveBall(dx, dy) {
+            position.left += dx;
+            position.top += dy;
+            updateBallPosition();
+        }
+
+        document.addEventListener("keydown", (event) => {
+            switch (event.key) {
+                case "ArrowUp":
+                    moveBall(0, -step);
+                    event.preventDefault();
+                    break;
+                case "ArrowDown":
+                    moveBall(0, step);
+                    event.preventDefault();
+                    break;
+                case "ArrowLeft":
+                    moveBall(-step, 0);
+                    event.preventDefault();
+                    break;
+                case "ArrowRight":
+                    moveBall(step, 0);
+                    event.preventDefault();
+                    break;
+            }
+        });
+
+        ball.addEventListener("click", () => {
+            const currentColor = ball.style.backgroundColor;
+            ball.style.backgroundColor = currentColor === "#4d79ff" || currentColor === "rgb(77, 121, 255)" ? "#ff4d4d" : "#4d79ff";
+        });
+    </script>
+</body>
+</html>
