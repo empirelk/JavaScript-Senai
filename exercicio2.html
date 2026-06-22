@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="ddot.jpg">
+    <link rel="stylesheet" href="css/estilo.css">
+    <title>Turma</title>
+    <meta name="description" content="...">
+    <meta name="keywords" content="sites, web, frontend">
+    <meta name="author" content="Gustavo Agostinho, gustahsantos2008@gmail.com">
+</head>
+<body>
+    <h1> desafio 02</h1>
+    <hr>
+
+    <form id="calcForm">
+        <label for="num1Input">Número 1:</label>
+        <input type="number" id="num1Input" name="num1" required>
+
+        <label for="num2Input">Número 2:</label>
+        <input type="number" id="num2Input" name="num2" required>
+
+        <label for="operacaoInput">Operação:</label>
+        <select id="operacaoInput" name="operacao">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    <div id="output">
+        <h2 id="num1"></h2>
+        <h2 id="num2"></h2>
+        <h2 id="operacao"></h2>
+        <h2 id="resultado"></h2>
+    </div>
+
+    <script>
+        const form = document.getElementById('calcForm');
+        const num1El = document.getElementById('num1');
+        const num2El = document.getElementById('num2');
+        const operacaoEl = document.getElementById('operacao');
+        const resultadoEl = document.getElementById('resultado');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const num1 = parseFloat(document.getElementById('num1Input').value);
+            const num2 = parseFloat(document.getElementById('num2Input').value);
+            const operacao = document.getElementById('operacaoInput').value;
+
+            let resultado;
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado = 'Por favor, insira números válidos.';
+            } else if (operacao === '+') {
+                resultado = num1 + num2;
+            } else if (operacao === '-') {
+                resultado = num1 - num2;
+            } else if (operacao === '*') {
+                resultado = num1 * num2;
+            } else if (operacao === '/') {
+                if (num2 === 0) {
+                    resultado = 'Divisão por zero não é permitida.';
+                } else {
+                    resultado = num1 / num2;
+                }
+            } else {
+                resultado = 'Operação inválida!';
+            }
+
+            num1El.textContent = 'Número 1: ' + num1;
+            num2El.textContent = 'Número 2: ' + num2;
+            operacaoEl.textContent = 'Operação: ' + operacao;
+            resultadoEl.textContent = 'Resultado: ' + resultado;
+        });
+    </script>
+</body>
+</html>
